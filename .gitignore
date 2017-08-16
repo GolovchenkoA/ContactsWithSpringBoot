@@ -7,3 +7,4 @@ bin/
 .idea
 target/
 Заметки.txt
+/src/test/java/ua/artem/golovchenko/contacts/JustTest.java

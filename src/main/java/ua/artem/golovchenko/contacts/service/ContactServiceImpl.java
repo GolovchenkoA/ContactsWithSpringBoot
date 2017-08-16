@@ -32,9 +32,11 @@ public class ContactServiceImpl implements ContactService {
         Pattern pattern = Pattern.compile(regexp);
         List<Contact> all = findAll();
         List<Contact> result = new LinkedList<>();
+        System.out.println("getByRegexp() All contacts: " + all);
 
         if(match == true){
             result =  matcher(all,pattern);
+            System.out.println("getByRegexp() Filtered contacts: " + result);
         } else if (match == false) {
             List<Contact> matching = matcher(all, pattern);
             all.removeAll(matching);
@@ -43,16 +45,13 @@ public class ContactServiceImpl implements ContactService {
         return result;
     }
 
-    private List<Contact> matcher(List<Contact> all, Pattern pattern) {
-        return all.stream().filter(row -> pattern.matcher(row.toString()).matches()).collect(Collectors.toList());
-    }
-
     @Override
     public List<Contact> findAll() {
-/*        List<Contact> contacts = new LinkedList<>();
-        repository.findAll().forEach(contacts::add);
-        */
         return repository.findAll();
+    }
+
+    private List<Contact> matcher(List<Contact> all, Pattern pattern) {
+        return all.stream().filter(row -> pattern.matcher(row.getName()).matches()).collect(Collectors.toList());
     }
 
 }

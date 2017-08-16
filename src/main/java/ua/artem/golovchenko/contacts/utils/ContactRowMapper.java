@@ -1,4 +1,4 @@
-package ua.artem.golovchenko.contacts.dao;
+package ua.artem.golovchenko.contacts.utils;
 
 import org.springframework.jdbc.core.RowMapper;
 import ua.artem.golovchenko.contacts.model.Contact;

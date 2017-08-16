@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Application  {
-//public class Application implements CommandLineRunner {
-
     private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String args[]) {

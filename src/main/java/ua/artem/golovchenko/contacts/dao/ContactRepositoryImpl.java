@@ -21,32 +21,19 @@ import java.util.List;
 public class ContactRepositoryImpl implements ContactRepository {
     private static final Logger logger = LoggerFactory.getLogger(ContactRepositoryImpl.class);
     private static final String FIND_ALL_CONTACTS = "SELECT id, name FROM contacts;";
+
     private final JdbcTemplate jdbcTemplate;
+
+
 
     @Autowired
     ContactRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-/*    @Override
-    public List<Contact> getByRegexp(String regexp, Boolean match) {
-
-
-        jdbcTemplate.query(
-                "SELECT id, name FROM contacts WHERE name = ?", new Object[] { regexp },
-                (rs, rowNum) -> new ContactImpl((long)rs.getLong("id"), rs.getString("name"))
-        ).forEach(customer -> logger.info(customer.toString()));
-
-        logger.info("Call method findAll() Result: {}", contacts);
-
-        return null;
-    }*/
-
     @Override
     public List<Contact> findAll() {
-        List<Contact> contacts  = jdbcTemplate.query(FIND_ALL_CONTACTS,
-                new BeanPropertyRowMapper(ContactImpl.class));
-
+        List<Contact> contacts = jdbcTemplate.query(FIND_ALL_CONTACTS,new BeanPropertyRowMapper(ContactImpl.class));
         logger.info("Call method findAll() Result: {}", contacts);
         return contacts;
     }
