@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="changelog/changelog-1.0.xml" relativeToChangelogFile="true" />
+
+
+    <!--Load Data in DB  -->
+    <changeSet author="liquibase-docs" id="loadData-DEV">
+        <loadData encoding="UTF-8"
+                  file="db/data/contacts.csv"
+                  schemaName="public"
+                  separator=","
+                  tableName="contacts">
+        </loadData>
+    </changeSet>
+
+<!--
+    <changeSet author="liquibase-docs" id="loadData-DEV">
+        <loadData encoding="UTF-8"
+                  file="db/contacts.csv"
+                  quotchar="'"
+                  schemaName="public"
+                  separator=";"
+                  tableName="contacts">
+            <column name="name" type="varchar(255)"/>
+        </loadData>
+    </changeSet>
+
+-->
+
+
+</databaseChangeLog>
