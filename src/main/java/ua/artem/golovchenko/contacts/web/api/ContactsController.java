@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ua.artem.golovchenko.contacts.model.Contact;
 import ua.artem.golovchenko.contacts.service.ContactService;
 
 /**
@@ -39,14 +40,12 @@ public class ContactsController {
         return HttpStatus.OK;
     }
 
-        @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpStatus findAll(){
-
+    //@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET)
+    public Iterable<Contact> findAll(){
         logger.info("Method call findAll()");
-        //return new ResponseEntity<Collection<Contact>>(contacts, HttpStatus.OK);
-        //contactService.getByRegexp(filter,false);
         System.out.println(contactService.findAll());
-        return HttpStatus.OK;
+        return contactService.findAll();
     }
 
 
