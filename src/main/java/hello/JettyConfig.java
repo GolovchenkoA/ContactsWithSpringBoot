@@ -1,6 +1,5 @@
 package hello;
 
-import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,10 +10,11 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class JettyConfig extends ResourceConfig  {
+//public class JettyConfig extends ResourceConfig  {
+public class JettyConfig   {
 
-    public JettyConfig() {
+/*    public JettyConfig() {
         register(ContactsController.class);
-    }
+    }*/
 
 }
