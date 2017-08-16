@@ -1,5 +1,5 @@
 # Contacts (With Spring Boot)
-
+[![Build Status](https://travis-ci.org/GolovchenkoA/ContactsWithSpringBoot.svg?branch=master)](https://travis-ci.org/GolovchenkoA/ContactsWithSpringBoot)
 ### Настройка пеерд запуском программы
 
 1. Создать пустую базу данных
