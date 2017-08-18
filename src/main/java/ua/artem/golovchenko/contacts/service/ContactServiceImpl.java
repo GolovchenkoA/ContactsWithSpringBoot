@@ -3,6 +3,7 @@ package ua.artem.golovchenko.contacts.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import ua.artem.golovchenko.contacts.dao.ContactRepository;
 import ua.artem.golovchenko.contacts.model.Contact;
 
@@ -17,20 +18,23 @@ import java.util.stream.Collectors;
  * @author Artem Golovchenko
  */
 @org.springframework.stereotype.Service
+@Qualifier("jdbc")
 public class ContactServiceImpl implements ContactService {
     private static final Logger logger = LoggerFactory.getLogger(ContactServiceImpl.class);
     private ContactRepository repository;
 
+
     @Autowired
     public ContactServiceImpl(ContactRepository repository) {
         this.repository = repository;
+        logger.info("CLASS CONSTRUCTOR: repository: {}", repository);
     }
 
     @Override
     public List<Contact> getByRegexp(String regexp, Boolean match) {
         logger.debug("Method call getByRegexp({},{})", regexp, match);
         Pattern pattern = Pattern.compile(regexp);
-        List<Contact> all = findAll();
+        List<Contact> all = this.findAll();
         List<Contact> result = new LinkedList<>();
         System.out.println("getByRegexp() All contacts: " + all);
 
@@ -53,5 +57,4 @@ public class ContactServiceImpl implements ContactService {
     private List<Contact> matcher(List<Contact> all, Pattern pattern) {
         return all.stream().filter(row -> pattern.matcher(row.getName()).matches()).collect(Collectors.toList());
     }
-
 }

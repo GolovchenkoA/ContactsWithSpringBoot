@@ -24,17 +24,16 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-
-
     @Autowired
-    ContactRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    public ContactRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        logger.debug("Class Constructor. jdbcTemplate: {}", jdbcTemplate);
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public List<Contact> findAll() {
         List<Contact> contacts = jdbcTemplate.query(FIND_ALL_CONTACTS,new BeanPropertyRowMapper(ContactImpl.class));
-        logger.info("Call method findAll() Result: {}", contacts);
+        logger.debug("Call method findAll() Result: {}", contacts);
         return contacts;
     }
 }

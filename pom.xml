@@ -4,8 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>gs-relational-data-access</artifactId>
-    <version>1.0.0</version>
+    <artifactId>ContactsWithSpringBoot</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+    <description>RESTful application. With Spring Boot and Hazelcast cache-server</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,6 +20,7 @@
         <jacoco.version>0.7.2.201409121644</jacoco.version>
         <!--<build-plugin.jacoco.version>0.7.9</build-plugin.jacoco.version>-->
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
+        <hazelcast.version>3.8.4</hazelcast.version>
     </properties>
 
     <dependencies>
@@ -59,12 +61,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-<!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test</artifactId>
-            <version>1.4.7.RELEASE</version>
-            <scope>test</scope>
-        </dependency>-->
 
         <dependency>
             <groupId>org.zapodot</groupId>
@@ -76,6 +72,19 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
+
+
+        <!--Cache server  -->
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-all</artifactId>
+            <version>${hazelcast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 
@@ -84,6 +93,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>ua.artem.golovchenko.contacts.Application</mainClass>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
