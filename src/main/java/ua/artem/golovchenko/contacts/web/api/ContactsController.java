@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ua.artem.golovchenko.contacts.dao.ContactRepository;
 import ua.artem.golovchenko.contacts.model.Contact;
 import ua.artem.golovchenko.contacts.service.ContactService;
 
@@ -22,11 +23,15 @@ public class ContactsController {
     private static final Logger logger = LoggerFactory.getLogger(ContactsController.class);
     private final ContactService contactService;
     private final ContactService contactServiceCache;
+    private final ContactRepository contactRepository;
 
     @Autowired
-    ContactsController(@Autowired @Qualifier("jdbc") ContactService contactService, @Autowired @Qualifier("cache")ContactService contactServiceCache) {
+    ContactsController(@Autowired @Qualifier("jdbc") ContactService contactService,
+                       @Autowired @Qualifier("cache")ContactService contactServiceCache,
+                       @Autowired ContactRepository contactRepository) {
         this.contactService = contactService;
         this.contactServiceCache = contactServiceCache;
+        this.contactRepository = contactRepository;
     }
 
     @RequestMapping(value = "contacts",
@@ -46,8 +51,15 @@ public class ContactsController {
     @RequestMapping(value = "contacts/cache",method = RequestMethod.GET)
     public Iterable<Contact> findAllWithCache(){
         logger.debug("Method call findAllWithCache()");
-        return contactServiceCache.findAll();
+        return contactRepository.findAll();
     }
+
+    // Original with Service
+/*    @RequestMapping(value = "contacts/cache",method = RequestMethod.GET)
+    public Iterable<Contact> findAllWithCache(){
+        logger.debug("Method call findAllWithCache()");
+        return contactServiceCache.findAll();
+    }*/
 
 /*
     @RequestMapping(value = "contacts/cache",method = RequestMethod.GET)

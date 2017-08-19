@@ -84,11 +84,6 @@
             <artifactId>persistence-api</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>spring-data-hazelcast</artifactId>
-            <version>1.0</version>
-        </dependency>
 
         <!-- Testing Mockito -->
         <dependency>
