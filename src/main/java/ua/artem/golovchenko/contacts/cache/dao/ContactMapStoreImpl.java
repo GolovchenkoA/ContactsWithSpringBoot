@@ -65,9 +65,7 @@ public class ContactMapStoreImpl implements ContactMapStore {
         return this.repository.findAll().stream().map(c -> c.getId()).collect(Collectors.toList());
     }
 
-    public List<Contact> findAll() {
-        return this.repository.findAll();
-    }
+    public List<Contact> findAll() {return this.repository.findAll();}
 
 
 }

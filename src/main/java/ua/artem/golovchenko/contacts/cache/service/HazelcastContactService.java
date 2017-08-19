@@ -2,7 +2,6 @@ package ua.artem.golovchenko.contacts.cache.service;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,6 +11,7 @@ import ua.artem.golovchenko.contacts.service.ContactService;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -29,21 +29,19 @@ import java.util.stream.Collectors;
 @Qualifier("cache")
 public class HazelcastContactService implements ContactService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private IMap<Long,Contact> contactIMap;
+    private ConcurrentMap<Long,Contact> contactIMap;
 
     public HazelcastContactService() {
-/*        ClientConfig clientConfig = new ClientConfig();
-        clientConfig.getNetworkConfig().addAddress("127.0.0.1");*/
         HazelcastInstance hazelcastInstance = HazelcastClient.newHazelcastClient();
-        /*contactIMap = hazelcastInstance.getMap("contacts");*/
-        contactIMap = hazelcastInstance.getMap("contacts");
-        logger.debug("Class constructor: cache: {}", hazelcastInstance.toString());
+        this.contactIMap = hazelcastInstance.getMap("contacts");
+        logger.debug("Class constructor: hazelcastInstance: {}", hazelcastInstance.toString());
     }
 
     @Override
     public List<Contact> findAll() {
         return contactIMap.values().stream().collect(Collectors.toList());
     }
+
 
     @Override
     public List<Contact> getByRegexp(String regexp, Boolean match) {
@@ -68,4 +66,6 @@ public class HazelcastContactService implements ContactService {
     private List<Contact> matcher(List<Contact> all, Pattern pattern) {
         return all.stream().filter(row -> pattern.matcher(row.getName()).matches()).collect(Collectors.toList());
     }
+
+
 }
