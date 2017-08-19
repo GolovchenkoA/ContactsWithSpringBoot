@@ -25,19 +25,19 @@
         http://www.hazelcast.com/schema/client-confighazelcast-client-config-3.8.xsd"
         xmlns="http://www.hazelcast.com/schema/client-config"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<!--<group>
-        <name>cache-cluster-prod</name>
-        <password>cache-cluster-prod-password</password>
-    </group>-->
+<group>
+        <name>PRODUCTION</name>
+        <password>production-password</password>
+    </group>
 
     <network>
         <cluster-members>
-            <address>127.0.0.1</address>
+            <address>127.0.0.1:5701</address>
         </cluster-members>
         <smart-routing>true</smart-routing>
-        <connection-timeout>5000</connection-timeout>
+<!--        <connection-timeout>5000</connection-timeout>
         <connection-attempt-period>3000</connection-attempt-period>
-        <connection-attempt-limit>2</connection-attempt-limit>
+        <connection-attempt-limit>2</connection-attempt-limit>-->
     </network>
 
 </hazelcast-client>

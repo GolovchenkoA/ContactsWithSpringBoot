@@ -23,30 +23,52 @@
         xmlns="http://www.hazelcast.com/schema/config"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-<!--    <group>
-        <name>cache-cluster-prod</name>
-        <password>cache-cluster-prod-password</password>
+    <group>
+        <name>PRODUCTION</name>
+        <password>production-password</password>
     </group>
-    -->
     <properties>
         <property name="hazelcast.logging.type">slf4j</property>
     </properties>
-    <management-center enabled="true" update-interval="3">http://localhost:9090/mancenter</management-center>
+    <management-center enabled="true" update-interval="3">
+        http://localhost:8080/mancenter
+    </management-center>
     <network>
+        <public-address>127.0.0.1:5701</public-address>
         <join>
             <multicast enabled="true"/>
+<!--            <tcp-ip enabled="true">
+                <members>192.168.1.1-254</members>
+            </tcp-ip>-->
         </join>
     </network>
-    
+
     <map name="contacts">
         <map-store enabled="true">
             <class-name >ua.artem.golovchenko.contacts.cache.dao.ContactMapStoreImpl</class-name>
         </map-store>
-        <time-to-live-seconds>0</time-to-live-seconds>
-<!--        <max-idle-seconds>0</max-idle-seconds>
-        <eviction-policy>LRU</eviction-policy>
-        <max-size policy="PER_NODE">5000</max-size>-->
+        <!--        <max-idle-seconds>0</max-idle-seconds>
+                <eviction-policy>LRU</eviction-policy>
+                <max-size policy="PER_NODE">5000</max-size>-->
 
     </map>
+    
+<!--    <map name="contacts">
+
+&lt;!&ndash;        <backup-count>1</backup-count>
+        <read-backup-data>true</read-backup-data>
+        <time-to-live-seconds>50</time-to-live-seconds>
+        <max-idle-seconds>0</max-idle-seconds>
+        <eviction-policy>LRU</eviction-policy>
+        <max-size policy="PER_NODE">5000</max-size>&ndash;&gt;
+
+&lt;!&ndash;        <map-store enabled="true">
+            <class-name >ua.artem.golovchenko.contacts.cache.dao.ContactMapStoreImpl</class-name>
+            <write-coalescing>false</write-coalescing>&lt;!&ndash;fix duplicate rows  &ndash;&gt;
+        </map-store>&ndash;&gt;
+
+
+
+    </map>-->
 
 </hazelcast>
