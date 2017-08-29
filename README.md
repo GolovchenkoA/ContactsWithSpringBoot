@@ -1,7 +1,8 @@
 # Contacts (With Spring Boot)
 [![Build Status](https://travis-ci.org/GolovchenkoA/ContactsWithSpringBoot.svg?branch=master)](https://travis-ci.org/GolovchenkoA/ContactsWithSpringBoot)
 
-Описание: Простое RESTful API с использованием Postgresql и кэширующим сервером Hazelcast
+###Описание
+Простое RESTful API с использованием Postgresql и кэширующим сервером Hazelcast
 
 ### Настройка пеерд запуском программы
 
