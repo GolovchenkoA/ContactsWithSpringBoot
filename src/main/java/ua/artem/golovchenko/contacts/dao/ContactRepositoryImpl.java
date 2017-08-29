@@ -3,6 +3,7 @@ package ua.artem.golovchenko.contacts.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 
 @Component
+@CacheConfig(cacheNames = "contacts")
 public class ContactRepositoryImpl implements ContactRepository {
     private static final Logger logger = LoggerFactory.getLogger(ContactRepositoryImpl.class);
     private static final String FIND_ALL_CONTACTS = "SELECT id, name FROM contacts;";
