@@ -17,8 +17,6 @@
         </encoder>
     </appender>
 
-    <logger name="com.hazelcast" level="DEBUG" />
-
     <root level="debug">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />

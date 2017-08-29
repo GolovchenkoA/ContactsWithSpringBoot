@@ -6,7 +6,7 @@
     <groupId>org.springframework</groupId>
     <artifactId>ContactsWithSpringBoot</artifactId>
     <version>1.0.1-SNAPSHOT</version>
-    <description>RESTful application. With Spring Boot and Hazelcast cache-server</description>
+    <description>RESTful application. With Spring Boot and Caching</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,7 +19,6 @@
         <jetty.version>9.2.17.v20160517</jetty.version>
         <jacoco.version>0.7.2.201409121644</jacoco.version>
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
-        <hazelcast.version>3.8.4</hazelcast.version>
     </properties>
 
     <dependencies>
@@ -72,13 +71,6 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
 
-
-        <!--Cache server  -->
-        <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast-all</artifactId>
-            <version>${hazelcast.version}</version>
-        </dependency>
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>

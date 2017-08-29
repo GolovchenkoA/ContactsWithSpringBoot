@@ -3,7 +3,6 @@ package ua.artem.golovchenko.contacts.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import ua.artem.golovchenko.contacts.dao.ContactRepository;
 import ua.artem.golovchenko.contacts.model.Contact;
 
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
  * @author Artem Golovchenko
  */
 @org.springframework.stereotype.Service
-@Qualifier("jdbc")
 public class ContactServiceImpl implements ContactService {
     private static final Logger logger = LoggerFactory.getLogger(ContactServiceImpl.class);
     private ContactRepository repository;
