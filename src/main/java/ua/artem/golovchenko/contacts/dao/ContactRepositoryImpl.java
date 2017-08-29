@@ -3,6 +3,7 @@ package ua.artem.golovchenko.contacts.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,7 @@ public class ContactRepositoryImpl implements ContactRepository {
     }
 
     @Override
+    @Cacheable("findAll")
     public List<Contact> findAll() {
         List<Contact> contacts = jdbcTemplate.query(FIND_ALL_CONTACTS,new BeanPropertyRowMapper(ContactImpl.class));
         logger.debug("Call method findAll() Result: {}", contacts);

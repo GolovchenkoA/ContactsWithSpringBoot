@@ -3,6 +3,7 @@ package ua.artem.golovchenko.contacts.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import ua.artem.golovchenko.contacts.dao.ContactRepository;
 import ua.artem.golovchenko.contacts.model.Contact;
 
@@ -29,6 +30,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Cacheable("getByRegexp")
     public List<Contact> getByRegexp(String regexp, Boolean match) {
         logger.debug("Method call getByRegexp({},{})", regexp, match);
         Pattern pattern = Pattern.compile(regexp);
@@ -49,6 +51,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public List<Contact> findAll() {
+        logger.info("Method call findAll()");
         return repository.findAll();
     }
 
