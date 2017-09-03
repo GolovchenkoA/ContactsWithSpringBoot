@@ -32,7 +32,5 @@ public class ContactServiceMainTest {
     public void testServiceFindAllMustReturnContactsAsRepositoryFindAll() throws Exception {
         given(this.repository.findAll()).willReturn(DbUtilsForTest.getExpectedDbRows());
         assertEquals(repository.findAll(),service.findAll());
-}
-
-
+    }
 }
