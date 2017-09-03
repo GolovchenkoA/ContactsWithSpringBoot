@@ -17,20 +17,4 @@
                   tableName="contacts">
         </loadData>
     </changeSet>
-
-<!--
-    <changeSet author="liquibase-docs" id="loadData-DEV">
-        <loadData encoding="UTF-8"
-                  file="db/contacts.csv"
-                  quotchar="'"
-                  schemaName="public"
-                  separator=";"
-                  tableName="contacts">
-            <column name="name" type="varchar(255)"/>
-        </loadData>
-    </changeSet>
-
--->
-
-
 </databaseChangeLog>
