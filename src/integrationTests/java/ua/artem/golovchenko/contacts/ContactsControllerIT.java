@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ApplicationIT {
+public class ContactsControllerIT {
     
     @Test
     public void test(){
