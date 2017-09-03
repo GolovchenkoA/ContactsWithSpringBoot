@@ -36,11 +36,4 @@ public class ContactsController {
         logger.debug("Method call getContacts with param : {}", filter);
         return contactService.getByRegexp(filter, false);
     }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public Iterable<Contact> findAll(){
-        logger.debug("Method call findAll()");
-        System.out.println(contactService.findAll());
-        return contactService.findAll();
-    }
 }
