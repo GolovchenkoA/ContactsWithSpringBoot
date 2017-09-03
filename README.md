@@ -16,6 +16,14 @@ spring.datasource.username=postgres
 **Пароль пользователя базы данных**<br />
 spring.datasource.password=password
 
+3. Сборка проекта
+mvnw clean package -P hazelcast
+
+4. Запуск программы
+ContactsWithSpringBoot\target>java -jar .\ContactsWithSpringBoot_[current_version]_.jar
+**блок _[current_version]_ необходимо заменить на текущую версию программы**
+
+
 
 ## Запуск тестов
 
