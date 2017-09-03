@@ -42,7 +42,7 @@ public class ContactsControllerTest {
     }
 
     @Test
-    public void testServiceFindAllMustReturnContactsAsRepositoryFindAll() throws Exception {
+    public void testServicegetFilteredContactsWithDefaultMatchesFalse() throws Exception {
         given(this.repository.findAll()).willReturn(DbUtilsForTest.getExpectedDbRows());
         List<Contact> excludedContacts = Arrays.asList(new ContactImpl(1L, "Artem"));
         String matches = "false";
@@ -54,5 +54,4 @@ public class ContactsControllerTest {
         assertTrue(responseEntity.getStatusCode().equals(HttpStatus.OK));
         assertFalse(afterFilter.containsAll(excludedContacts));
     }
-
 }
