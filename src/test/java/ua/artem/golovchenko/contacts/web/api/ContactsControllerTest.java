@@ -39,7 +39,7 @@ public class ContactsControllerTest {
         given(this.repository.findAll()).willReturn(DbUtilsForTest.getExpectedDbRows());
         List<Contact> excludedContacts = Arrays.asList(new ContactImpl(1L, "Artem"));
 
-        List<Contact> afterFilter = (List)contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A);
+        List<Contact> afterFilter = (List)contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A, "false");
         assertFalse(afterFilter.containsAll(excludedContacts));
     }
 
