@@ -24,7 +24,7 @@ public class ContactsController {
     private final ContactRepository contactRepository;
 
     @Autowired
-    ContactsController(@Autowired ContactService contactService,
+    public ContactsController(@Autowired ContactService contactService,
                        @Autowired ContactRepository contactRepository) {
         this.contactService = contactService;
         this.contactRepository = contactRepository;
@@ -32,15 +32,8 @@ public class ContactsController {
 
     @RequestMapping(value = "contacts",
             method = RequestMethod.GET)
-    public Iterable<Contact> getContactWithFilter(@RequestParam(value="nameFilter") String filter){
+    public Iterable<Contact> getFilteredContacts(@RequestParam(value="nameFilter") String filter){
         logger.debug("Method call getContacts with param : {}", filter);
         return contactService.getByRegexp(filter, false);
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public Iterable<Contact> findAll(){
-        logger.debug("Method call findAll()");
-        System.out.println(contactService.findAll());
-        return contactService.findAll();
     }
 }
