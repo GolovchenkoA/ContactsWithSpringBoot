@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.artem.golovchenko.contacts.DbUtilsForTest;
 import ua.artem.golovchenko.contacts.model.Contact;
-import ua.artem.golovchenko.contacts.model.ContactImpl;
 
 import java.util.List;
 
@@ -34,13 +33,11 @@ public class ContactRepositoryImplTest {
         List<Contact> actualContacts = repository.findAll();
         assertEquals(expectedContacts.size(), actualContacts.size());
 
-        //assertEquals(Arrays.asList(expectedContacts), Arrays.asList(contactsInDB));
         assertEquals(expectedContacts.get(1), actualContacts.get(1));
         int i = 0;
         for(Object row: actualContacts){
-            System.out.println(expectedContacts.get(i) +" " + (Contact)row);
-            assertEquals(expectedContacts.get(i++), (ContactImpl)row);
+            System.out.println(expectedContacts.get(i) +" " + row);
+            assertEquals(expectedContacts.get(i++), row);
         }
-        //assertEquals(actualList.containsAll(expectedContacts));
     }
 }
