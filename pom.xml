@@ -5,7 +5,7 @@
 
     <groupId>org.springframework</groupId>
     <artifactId>ContactsWithSpringBoot</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <description>RESTful application. With Spring Boot and Caching</description>
 
     <parent>
