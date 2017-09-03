@@ -51,7 +51,18 @@ public class ContactsControllerTest {
         List<Contact> afterFilter = (List)responseEntity.getBody();
         logger.info("filtered contacts list: {}", afterFilter);
 
-        assertTrue(responseEntity.getStatusCode().equals(HttpStatus.OK));
         assertFalse(afterFilter.containsAll(excludedContacts));
     }
+
+    @Test
+    public void testServicegetFilteredContactsReturnStatusOK() throws Exception {
+        given(this.repository.findAll()).willReturn(DbUtilsForTest.getExpectedDbRows());
+        List<Contact> excludedContacts = Arrays.asList(new ContactImpl(1L, "Artem"));
+        String matches = "false";
+
+        ResponseEntity responseEntity = contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A, matches);
+        assertTrue(responseEntity.getStatusCode().equals(HttpStatus.OK));
+    }
+
+
 }
