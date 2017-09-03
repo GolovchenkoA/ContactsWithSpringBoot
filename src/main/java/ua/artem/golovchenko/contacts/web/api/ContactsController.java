@@ -32,7 +32,7 @@ public class ContactsController {
 
     @RequestMapping(value = "contacts",
             method = RequestMethod.GET)
-    public Iterable<Contact> getContactWithFilter(@RequestParam(value="nameFilter") String filter){
+    public Iterable<Contact> getFilteredContacts(@RequestParam(value="nameFilter") String filter){
         logger.debug("Method call getContacts with param : {}", filter);
         return contactService.getByRegexp(filter, false);
     }
