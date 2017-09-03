@@ -16,3 +16,14 @@ spring.datasource.username=postgres
 **Пароль пользователя базы данных**<br />
 spring.datasource.password=password
 
+
+## Запуск тестов
+
+# Выполнение всех тестов
+mvnw clean verify
+
+# Выполнение только unit-тестов
+mvnw clean test
+
+
+
