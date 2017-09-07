@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Данные, которые возвращает этот класс должны быть одинаковыми с данными
+ * Данные для unit-тестов (без использования БД)
  *
  *
  * Created by Artem on 16.08.2017.

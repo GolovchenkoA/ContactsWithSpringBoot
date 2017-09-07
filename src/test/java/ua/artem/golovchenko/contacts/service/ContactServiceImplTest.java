@@ -6,9 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 
-        ContactRegExpTest.class,
-        ContactServiceMainTest.class
-
+        ContactRegExpTest.class
 })
 
 public class ContactServiceImplTest {

@@ -17,21 +17,26 @@ spring.datasource.username=postgres
 spring.datasource.password=password
 
 3. Сборка проекта
+mvnw clean package
+
+Сборка проекта с использованием кэширующего сервера Hazelcast<br />
 mvnw clean package -P hazelcast
 
 4. Запуск программы
-ContactsWithSpringBoot\target>java -jar .\ContactsWithSpringBoot_[current_version]_.jar
+ContactsWithSpringBoot\target>java -jar .\ContactsWithSpringBoot-_[current_version]_.jar
 **блок _[current_version]_ необходимо заменить на текущую версию программы**
 
 
 
 ## Запуск тестов
 
-# Выполнение всех тестов
-mvnw clean verify
-
 # Выполнение только unit-тестов
 mvnw clean test
+
+# Выполнение всех тестов
+mvnw clean verify -Phazelcast
+
+
 
 
 

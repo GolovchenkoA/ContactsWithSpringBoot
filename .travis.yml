@@ -10,7 +10,7 @@ before_install:
  - chmod +x ./mvnw
 
 script:
-  - ./mvnw clean verify
+  - ./mvnw clean verify -Phazelcast
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
