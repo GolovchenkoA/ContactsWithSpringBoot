@@ -22,6 +22,7 @@
 mvnw clean package
 ```
 Сборка проекта с использованием кэширующего сервера Hazelcast<br />
+
 ```sh
 mvnw clean package -P hazelcast
 ```
