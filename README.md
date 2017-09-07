@@ -17,7 +17,7 @@
 * **Пароль пользователя базы данных**<br />
 ###### _spring.datasource.password=password_
 <br />
-3. Сборка проекта
+3. Сборка проекта</br>
 ```sh
 mvnw clean package
 ```
