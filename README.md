@@ -18,8 +18,9 @@
 ###### _spring.datasource.password=password_
 <br />
 3. Сборка проекта</br>
+
 ```sh
-mvnw clean package
+mvnw clean package 
 ```
 </br>
 Сборка проекта с использованием кэширующего сервера Hazelcast<br />
