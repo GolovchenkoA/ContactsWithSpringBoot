@@ -1,10 +1,8 @@
 package ua.artem.golovchenko.contacts.web.api;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +10,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import ua.artem.golovchenko.contacts.DbUtilsForTest;
 import ua.artem.golovchenko.contacts.dao.ContactRepository;
 import ua.artem.golovchenko.contacts.model.Contact;
-import ua.artem.golovchenko.contacts.model.ContactImpl;
 import ua.artem.golovchenko.contacts.service.ContactServiceImpl;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.BDDMockito.given;
 
-@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ContactsControllerTest {
+public class ContactsControllerIT {
     private static final Logger logger = LoggerFactory.getLogger(ContactsControllerTest.class);
     private static final String ALL_WORDS_THAT_BEGIN_WITH_LATTER_A = "^A.*$";
     private ContactsController contactsController;
@@ -36,7 +29,7 @@ public class ContactsControllerTest {
 
     @Autowired
     private ContactServiceImpl service;
-    @Mock
+    @Autowired
     private ContactRepository repository;
 
     @Before
@@ -47,22 +40,20 @@ public class ContactsControllerTest {
 
     @Test
     public void testServicegetFilteredContactsWithDefaultMatchesFalse() throws Exception {
-        given(this.repository.findAll()).willReturn(DbUtilsForTest.getExpectedDbRows());
-        List<Contact> excludedContacts = Arrays.asList(new ContactImpl(1L, "Artem"));
-
         ResponseEntity responseEntity = contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A, this.matches);
         List<Contact> afterFilter = (List)responseEntity.getBody();
         logger.info("filtered contacts list: {}", afterFilter);
 
-        assertFalse(afterFilter.containsAll(excludedContacts));
+        //assertFalse(afterFilter.containsAll(excludedContacts));
+        for(Contact contact:afterFilter){
+            assertFalse(contact.getName().startsWith("A"));
+        }
     }
 
     @Test
     public void testServicegetFilteredContactsReturnStatusOK() throws Exception {
-        given(this.repository.findAll()).willReturn(DbUtilsForTest.getExpectedDbRows());
-        List<Contact> excludedContacts = Arrays.asList(new ContactImpl(1L, "Artem"));
-
         ResponseEntity responseEntity = contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A, this.matches);
+
         assertTrue(responseEntity.getStatusCode().equals(HttpStatus.OK));
     }
 }

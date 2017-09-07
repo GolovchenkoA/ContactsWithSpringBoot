@@ -1,9 +1,6 @@
 # Contacts (With Spring Boot)
 [![Build Status](https://travis-ci.org/GolovchenkoA/ContactsWithSpringBoot.svg?branch=master)](https://travis-ci.org/GolovchenkoA/ContactsWithSpringBoot)
-
-###Описание
-Простое RESTful API с использованием Postgresql и кэширующим сервером Hazelcast
-
+[![codecov](https://codecov.io/gh/GolovchenkoA/ContactsWithSpringBoot/branch/master/graph/badge.svg)](https://codecov.io/gh/GolovchenkoA/ContactsWithSpringBoot)
 ### Настройка пеерд запуском программы
 
 1. Создать пустую базу данных
@@ -20,14 +17,27 @@ spring.datasource.username=postgres
 **Пароль пользователя базы данных**<br />
 spring.datasource.password=password
 
+3. Сборка проекта
+mvnw clean package
+
+Сборка проекта с использованием кэширующего сервера Hazelcast<br />
+mvnw clean package -P hazelcast
+
+4. Запуск программы
+ContactsWithSpringBoot\target>java -jar .\ContactsWithSpringBoot-_[current_version]_.jar
+**блок _[current_version]_ необходимо заменить на текущую версию программы**
+
+
 
 ## Запуск тестов
 
-# Выполнение всех тестов
-mvnw clean verify
-
 # Выполнение только unit-тестов
 mvnw clean test
+
+# Выполнение всех тестов
+mvnw clean verify -Phazelcast
+
+
 
 
 

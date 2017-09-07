@@ -2,14 +2,12 @@ package ua.artem.golovchenko.contacts.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import ua.artem.golovchenko.contacts.DbUtilsForTest;
 import ua.artem.golovchenko.contacts.dao.ContactRepository;
 import ua.artem.golovchenko.contacts.model.Contact;
 import ua.artem.golovchenko.contacts.model.ContactImpl;
@@ -40,13 +38,6 @@ public class ContactRegExpTest {
     private ContactServiceImpl service;
     @Mock
     private ContactRepository repository;
-    private List<Contact> contactList;
-    private List<Contact> contactsList;
-
-    @Before
-    public void init(){
-        contactList = DbUtilsForTest.getExpectedDbRows();
-    }
 
     @Test
     public void testGetByRegexpWhenRegexpReturnContactsThatMatchBeginnigA() throws Exception {

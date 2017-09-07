@@ -51,7 +51,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public List<Contact> findAll() {
-        logger.info("Method call findAll()");
+        logger.debug("Method call findAll()");
         return repository.findAll();
     }
 
