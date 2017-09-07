@@ -31,10 +31,10 @@ ContactsWithSpringBoot\target>java -jar .\ContactsWithSpringBoot-_[current_versi
 
 ## Запуск тестов
 
-# Выполнение только unit-тестов
+## Выполнение только unit-тестов
 mvnw clean test
 
-# Выполнение всех тестов
+## Выполнение всех тестов
 mvnw clean verify -Phazelcast
 
 
