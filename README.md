@@ -8,13 +8,13 @@
 
 Значения следующих параметров необходимо заменить:
 
-######**Путь к базе данных**<br />
-######spring.datasource.url=jdbc:postgresql://localhost:5432/contacts2
+###### **Путь к базе данных**<br />
+###### spring.datasource.url=jdbc:postgresql://localhost:5432/contacts2
 
-######**Пользователь у которого есть право на подключение и чтение базы данных**<br />
-######spring.datasource.username=postgres
+###### **Пользователь у которого есть право на подключение и чтение базы данных**<br />
+###### spring.datasource.username=postgres
 
-######**Пароль пользователя базы данных**<br />
+###### **Пароль пользователя базы данных**<br />
 spring.datasource.password=password
 <br />
 3. Сборка проекта
