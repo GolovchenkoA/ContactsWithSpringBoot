@@ -22,7 +22,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ContactsControllerIT {
-    private static final Logger logger = LoggerFactory.getLogger(ContactsControllerTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(ContactsControllerIT.class);
     private static final String ALL_WORDS_THAT_BEGIN_WITH_LATTER_A = "^A.*$";
     private ContactsController contactsController;
     private String matches;
@@ -44,7 +44,6 @@ public class ContactsControllerIT {
         List<Contact> afterFilter = (List)responseEntity.getBody();
         logger.info("filtered contacts list: {}", afterFilter);
 
-        //assertFalse(afterFilter.containsAll(excludedContacts));
         for(Contact contact:afterFilter){
             assertFalse(contact.getName().startsWith("A"));
         }
