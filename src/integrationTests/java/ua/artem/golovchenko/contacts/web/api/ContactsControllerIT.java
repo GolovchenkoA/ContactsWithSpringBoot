@@ -16,14 +16,15 @@ import ua.artem.golovchenko.contacts.service.ContactServiceImpl;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ContactsControllerIT {
     private static final Logger logger = LoggerFactory.getLogger(ContactsControllerIT.class);
     private static final String ALL_WORDS_THAT_BEGIN_WITH_LATTER_A = "^A.*$";
+    private static final String BAD_REGEXP = "/\\";
     private ContactsController contactsController;
     private String matches;
 
@@ -53,6 +54,15 @@ public class ContactsControllerIT {
     public void testServicegetFilteredContactsReturnStatusOK() throws Exception {
         ResponseEntity responseEntity = contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A, this.matches);
 
-        assertTrue(responseEntity.getStatusCode().equals(HttpStatus.OK));
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
+
+    @Test
+    public void testServicegetFilteredContactsReturnInvalidRequest() throws Exception {
+        ResponseEntity responseEntity = contactsController.getFilteredContacts(BAD_REGEXP, this.matches);
+
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+    }
+
+
 }

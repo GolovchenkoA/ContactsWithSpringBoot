@@ -4,8 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotEquals;
 
 public class ContactImplTest {
     private static Long id;
@@ -36,8 +35,8 @@ public class ContactImplTest {
         Contact contact1 = new ContactImpl(1L,"name1");
         Contact contact2 = new ContactImpl(1L,"name1");
 
-        assertTrue(contact1.equals(contact2));
-        assertTrue(contact1.hashCode() == contact2.hashCode());
+        assertEquals(contact1,contact2);
+        assertEquals(contact1.hashCode(),contact2.hashCode());
     }
 
     @Test
@@ -45,15 +44,15 @@ public class ContactImplTest {
         Contact contact1 = new ContactImpl(1L,"name1");
         Contact obj = null;
 
-        assertFalse(contact1.equals(obj));
+        assertNotEquals(contact1,obj);
     }
 
     @Test
     public void testNotEqualsIfDifferentIDs(){
         Contact contact1 = new ContactImpl(1L,"name1");
         Contact contact2 = new ContactImpl(2L,"name1");
-
-        assertFalse(contact2.equals(contact1));
+        
+        assertNotEquals(contact2,contact1);
     }
 
     @Test
@@ -61,13 +60,13 @@ public class ContactImplTest {
         Contact contact1 = new ContactImpl(1L,"name1");
         Contact contact2 = new ContactImpl(1L,"name2");
 
-        assertFalse(contact2.equals(contact1));
+        assertNotEquals(contact2,contact1);
     }
 
     @Test
     public void testNotEqualsIfCompareWithNullObject(){
         Contact contact1 = new ContactImpl(1L,"name1");
-        assertFalse(contact1.equals(null));
+        assertNotEquals(contact1,null);
     }
 
 
