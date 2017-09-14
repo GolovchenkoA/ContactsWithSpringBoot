@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.artem.golovchenko.contacts.dao.ContactRepository;
@@ -29,29 +28,12 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ContactRegExpTest {
-    //private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private static final String ALL_WORDS_THAT_BEGIN_WITH_LATTER_A = "^A.*$";
     private static final String ALL_WORDS_THAT_NOT_CONTAINS_LATTERS_aei = "^.*[aei].*$";
     private static final String CONTACTS_REGEXP = "db/data/contacts.json";
 
-    @Autowired
-    private ContactServiceImpl service;
     @Mock
     private ContactRepository repository;
-
-    @Test
-    public void testGetByRegexpWhenRegexpReturnContactsThatMatchBeginnigA() throws Exception {
-        when(this.repository.findAll()).thenReturn(getContactsListForRegExpTest());
-        ContactService service = new ContactServiceImpl(repository);
-        List<Contact> filterdContacts = service.getByRegexp(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A,true);
-
-        List<Contact> contactsMustBe = service.findAll()
-                .stream().filter(contact -> contact.getName().startsWith("A"))
-                .collect(Collectors.toList());
-
-        assertEquals(contactsMustBe, filterdContacts);
-    }
-
 
     @Test
     public void testGetByRegexpWhenRegexpReturnContactsThatNotMatchBeginnigA() throws Exception {
@@ -61,22 +43,6 @@ public class ContactRegExpTest {
 
         List<Contact> contactsMustBe = service.findAll()
                 .stream().filter(contact -> !(contact.getName().startsWith("A")))
-                .collect(Collectors.toList());
-
-        assertEquals(contactsMustBe, filterdContacts);
-    }
-
-
-    @Test
-    public void testGetByRegexpWhenRegexpReturnContactsThatContainLattersAei() throws Exception {
-        when(this.repository.findAll()).thenReturn(getContactsListForRegExpTest());
-        ContactService service = new ContactServiceImpl(repository);
-        List<Contact> filterdContacts = service.getByRegexp(ALL_WORDS_THAT_NOT_CONTAINS_LATTERS_aei,true);
-
-        List<Contact> contactsMustBe = service.findAll()
-                .stream().filter(contact -> contact.getName().contains("a")
-                        || contact.getName().contains("e")
-                        || contact.getName().contains("i"))
                 .collect(Collectors.toList());
 
         assertEquals(contactsMustBe, filterdContacts);

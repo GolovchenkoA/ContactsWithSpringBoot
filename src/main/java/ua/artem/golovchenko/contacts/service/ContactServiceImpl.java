@@ -7,9 +7,10 @@ import org.springframework.cache.annotation.Cacheable;
 import ua.artem.golovchenko.contacts.dao.ContactRepository;
 import ua.artem.golovchenko.contacts.model.Contact;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
 /**
@@ -33,9 +34,18 @@ public class ContactServiceImpl implements ContactService {
     @Cacheable("getByRegexp")
     public List<Contact> getByRegexp(String regexp, Boolean match) {
         logger.debug("Method call getByRegexp({},{})", regexp, match);
-        Pattern pattern = Pattern.compile(regexp);
+        Pattern pattern = null;
+
+        try {
+            pattern = Pattern.compile(regexp);
+        } catch (PatternSyntaxException e) {
+            logger.info("Invalid regexp ({}). Exception description: {}",regexp, e.getDescription() );
+            throw new IllegalArgumentException(e.getDescription());
+        }
+
+
         List<Contact> all = this.findAll();
-        List<Contact> result = new LinkedList<>();
+        List<Contact> result = new ArrayList<>();
         System.out.println("getByRegexp() All contacts: " + all);
 
         if(match == true){
