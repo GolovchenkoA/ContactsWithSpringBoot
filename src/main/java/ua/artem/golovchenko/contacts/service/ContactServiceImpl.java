@@ -44,7 +44,6 @@ public class ContactServiceImpl implements ContactService {
 
         List<Contact> all = this.findAll();
         List<Contact> result = new ArrayList<>();
-        System.out.println("getByRegexp() All contacts: " + all);
 
         if(match == true){
             result =  matcher(all,pattern);
@@ -54,6 +53,7 @@ public class ContactServiceImpl implements ContactService {
             all.removeAll(matching);
             result = all;
         }
+
         return result;
     }
 
