@@ -42,11 +42,9 @@ public class ContactServiceImpl implements ContactService {
             logger.info("Invalid regexp ({}). Exception description: {}",regexp, e.getDescription() );
             throw new IllegalArgumentException(e.getDescription());
         }
-
-
+        
         List<Contact> all = this.findAll();
         List<Contact> result = new ArrayList<>();
-        System.out.println("getByRegexp() All contacts: " + all);
 
         if(match == true){
             result =  matcher(all,pattern);
