@@ -40,18 +40,10 @@ public class ContactImplTest {
     }
 
     @Test
-    public void testNotEqualsIfContactNull(){
-        Contact contact1 = new ContactImpl(1L,"name1");
-        Contact obj = null;
-
-        assertNotEquals(contact1,obj);
-    }
-
-    @Test
     public void testNotEqualsIfDifferentIDs(){
         Contact contact1 = new ContactImpl(1L,"name1");
         Contact contact2 = new ContactImpl(2L,"name1");
-        
+
         assertNotEquals(contact2,contact1);
     }
 
