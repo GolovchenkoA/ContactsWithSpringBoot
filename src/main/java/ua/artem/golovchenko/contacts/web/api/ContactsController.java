@@ -35,12 +35,12 @@ public class ContactsController {
 
     @RequestMapping(value = "contacts",
             method = RequestMethod.GET)
-    public ResponseEntity getFilteredContacts(@RequestParam(value="nameFilter") String filter , @RequestParam(value="match", required=false, defaultValue="false") String match){
+    public ResponseEntity getFilteredContacts(@RequestParam(value="nameFilter") String filter ){
 
-        logger.debug("Method call getContacts with param : {} , match : {}", filter ,match);
+        logger.debug("Method call getContacts with param : {}", filter );
 
         try{
-            List<Contact> contacts = contactService.getByRegexp(filter, Boolean.parseBoolean(match));
+            List<Contact> contacts = contactService.getByRegexp(filter, false);
             logger.debug("return HttpStatus.OK");
             return new ResponseEntity<>(contacts, HttpStatus.OK);
         } catch (IllegalArgumentException e){

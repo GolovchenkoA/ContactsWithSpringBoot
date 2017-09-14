@@ -26,7 +26,6 @@ public class ContactsControllerIT {
     private static final String ALL_WORDS_THAT_BEGIN_WITH_LATTER_A = "^A.*$";
     private static final String BAD_REGEXP = "/\\";
     private ContactsController contactsController;
-    private String matches;
 
     @Autowired
     private ContactServiceImpl service;
@@ -36,12 +35,11 @@ public class ContactsControllerIT {
     @Before
     public void init(){
         contactsController = new ContactsController(service,repository);
-        matches = "false";
     }
 
     @Test
     public void testServicegetFilteredContactsWithDefaultMatchesFalse() throws Exception {
-        ResponseEntity responseEntity = contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A, this.matches);
+        ResponseEntity responseEntity = contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A);
         List<Contact> afterFilter = (List)responseEntity.getBody();
         logger.info("filtered contacts list: {}", afterFilter);
 
@@ -52,14 +50,14 @@ public class ContactsControllerIT {
 
     @Test
     public void testServicegetFilteredContactsReturnStatusOK() throws Exception {
-        ResponseEntity responseEntity = contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A, this.matches);
+        ResponseEntity responseEntity = contactsController.getFilteredContacts(ALL_WORDS_THAT_BEGIN_WITH_LATTER_A);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
     @Test
     public void testServicegetFilteredContactsReturnInvalidRequest() throws Exception {
-        ResponseEntity responseEntity = contactsController.getFilteredContacts(BAD_REGEXP, this.matches);
+        ResponseEntity responseEntity = contactsController.getFilteredContacts(BAD_REGEXP);
 
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
     }
