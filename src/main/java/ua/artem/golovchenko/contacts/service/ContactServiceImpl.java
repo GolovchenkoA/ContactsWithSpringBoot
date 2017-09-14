@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.Cacheable;
 import ua.artem.golovchenko.contacts.dao.ContactRepository;
 import ua.artem.golovchenko.contacts.model.Contact;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class ContactServiceImpl implements ContactService {
         logger.debug("Method call getByRegexp({},{})", regexp, match);
         Pattern pattern = Pattern.compile(regexp);
         List<Contact> all = this.findAll();
-        List<Contact> result = new LinkedList<>();
+        List<Contact> result = new ArrayList<>();
         System.out.println("getByRegexp() All contacts: " + all);
 
         if(match == true){
