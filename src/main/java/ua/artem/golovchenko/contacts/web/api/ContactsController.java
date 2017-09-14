@@ -43,7 +43,12 @@ public class ContactsController {
             List<Contact> contacts = contactService.getByRegexp(filter, Boolean.parseBoolean(match));
             logger.debug("return HttpStatus.OK");
             return new ResponseEntity<>(contacts, HttpStatus.OK);
-        } catch (Exception e){
+        } catch (IllegalArgumentException e){
+            logger.info("Invalid regexp: {}", filter );
+            logger.info("Return HttpStatus.BAD_REQUEST");
+            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+        }
+        catch (Exception e){
             logger.info("Return HttpStatus.INTERNAL_SERVER_ERROR");
             logger.info("Request error. StackTrase: {}", e);
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
